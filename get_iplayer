@@ -5331,6 +5331,7 @@ sub get_metadata {
 	$prog->{seriesnum}	= $seriesnum || $prog->{seriesnum};
 	# Conditionally set the senum
 	$prog->{senum} = sprintf "s%02de%02d%s", $prog->{seriesnum}, $prog->{episodenum}, $prog->{episodepart} if $prog->{seriesnum} != 0 && $prog->{episodenum} != 0;
+	$prog->{senumupper} = sprintf "S%02dE%02d%s", $prog->{seriesnum}, $prog->{episodenum}, $prog->{episodepart} if $prog->{seriesnum} != 0 && $prog->{episodenum} != 0;
 	$prog->{senumx} = sprintf "%02dx%02d%s", $prog->{seriesnum}, $prog->{episodenum}, $prog->{episodepart} if $prog->{seriesnum} != 0 && $prog->{episodenum} != 0;
 	# Create a stripped episode and series with numbers removed + senum s##e## element.
 	$prog->{episodeshort} = $prog->{episode};
@@ -5352,6 +5353,7 @@ sub get_metadata {
 	$prog->{sebcastdate} = substr($prog->{sebcast}, 0, 8);
 	$prog->{sebcasttime} = substr($prog->{sebcast}, 8, 4);
 	$prog->{sesort} = $prog->{senum} || $prog->{sebcast};
+	$prog->{sesortupper} = $prog->{senumupper} || $prog->{sebcast};
 	$prog->{sesortx} = $prog->{senumx} || $prog->{sebcast};
 
 	# Do this for each version tried in this order (if they appeared in the content)
